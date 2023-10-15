@@ -14,6 +14,7 @@ namespace Labb2
     // Klassen WareHouse innehåller metoder och en array för att hantera pallar i lagret.
     public class WareHouse
     {
+        //johnny FAKIN JETT! 
         // skapar en 2D-array för att lagra information om pallar.
         public static PalletInfo[,] WareHouseIndex = new PalletInfo[2, 20];
 
