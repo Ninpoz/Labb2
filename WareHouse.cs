@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Data;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Labb2
 {
-    
-    //Här vill jag skapa min array
+
+    // Klassen WareHouse innehåller metoder och en array för att hantera pallar i lagret.
     public class WareHouse
     {
-        
+        // skapar en 2D-array för att lagra information om pallar.
         public static PalletInfo[,] WareHouseIndex = new PalletInfo[2,20];
-
+        
+        // Metod för att lägga till pallar i lagret
         public static void AddIntoWareHouse(PalletInfo palletInfo)
         {
-            //PalletInfo palletInfo1 = new PalletInfo();
+            // En loop som hanterar om det är en hel eller halv pall
+            
             bool BreakMenuLoop = false;
-           
             while (!BreakMenuLoop) 
             {
                 
@@ -30,7 +34,7 @@ namespace Labb2
                 Console.Write("Ditt val :");
                 string palletSizeChoice = Console.ReadLine();
 
-                if (Regex.IsMatch(palletSizeChoice, "^[1-3]{1}$"))
+                if (Regex.IsMatch(palletSizeChoice, "^[1-3]{1}$")) // kollar med regex så inmatning blir korrek
                 {
                     switch (palletSizeChoice)
                     {
@@ -40,7 +44,9 @@ namespace Labb2
                         case "2": palletInfo.PalletSize = "HelPall";
                             BreakMenuLoop = true;
                             break;
-                        case "3": BreakMenuLoop = true; break; 
+                        case "3": 
+                            BreakMenuLoop = true;
+                            return;
                     }
 
                 }
@@ -50,105 +56,78 @@ namespace Labb2
                     Console.ReadKey();
                 }
             }
-
-            if (palletInfo.PalletSize.Equals("HalvPall"))
+            // om det är en halvpall går vi in i detta kodblocket
+           if (palletInfo.PalletSize.Equals("HalvPall"))
             {
-                for (int row = 0; row < WareHouseIndex.GetLength(0); row++)
-                {
-                    for (int column = 0; column < WareHouseIndex.GetLength(1); column++)
-                    {
-                       if (WareHouseIndex[row,column] == null)
-                        {
-                            WareHouseIndex[row, column] = palletInfo;
-                            PalletInfo.Arrival = DateTime.Now;
-                            
-                            Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} som är en {palletInfo.PalletSize} i lager plats {row}:{column} ");
-                            Console.ReadLine();
-                            return;
-
-                        }
-                        else
-                        {
-                            if (WareHouseIndex[row+1,column ] ==null)
-                            {
-                                WareHouseIndex[row+1 ,column] = palletInfo;
-                                PalletInfo.Arrival = DateTime.Now;
-                                Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} som är en {palletInfo.PalletSize} i lager plats {row+1}:{column} ");
-                                Console.ReadLine();
-                                return;
-                            }
-                        }
-                    }
-                }
-            }  
-           else
+                HalfPallet.IfHalfPallet(palletInfo);
+            }
+           else if (palletInfo.PalletSize.Equals("HelPall"))
             {
-                if (palletInfo.PalletSize.Equals("HelPall"))
-                {
-                    for (int row = 0; row < WareHouseIndex.GetLength(0); row++)
-                    {
-                        for (int column = 0; column < WareHouseIndex.GetLength(1); column++)
-                        {
-                            if (WareHouseIndex[row, column] == null)
-                            {
-                                WareHouseIndex[row, column] = palletInfo;
-                                WareHouseIndex[row +1, column] = palletInfo;
-                                PalletInfo.Arrival = DateTime.Now;
-
-                                Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} som är en {palletInfo.PalletSize} i lager plats {row}:{column} / {row+1}:{column} ");
-                                Console.ReadLine();
-                                return;
-
-                            }
-                            else
-                            {
-                                if (WareHouseIndex[row+1, column] == null)
-                                {
-                                    WareHouseIndex[row, column+1] = palletInfo;
-                                    WareHouseIndex[row+1,column+1] = palletInfo;
-                                    PalletInfo.Arrival = DateTime.Now;
-
-                                    Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} som är en {palletInfo.PalletSize} i lager plats {row}:{column+1}/ {row+1}:{column+1} ");
-                                    Console.ReadLine();
-                                    return;
-
-                                }
-                            }
-
-                        }
-                    }
-                }
-                    
+                WholePallet.IfWholePallet(palletInfo);
             }
 
 
         }
+       
+
+       
+
         public static PalletInfo? GetFromWareHouse()
         {
+            var palletToExtract = Extract.ExtractPallet();
 
-            Console.WriteLine("Ange det pallID du vill plocka ut");
-            string sökPallId = Console.ReadLine();
-
-            if (Regex.IsMatch(sökPallId, "^[A-Z]{2}[0-9]{3}$"))
+            if (palletToExtract == null)
             {
-                for (int row = 0; row < WareHouseIndex.GetLength(0); row++)
-                {
-                    for (int column = 0; column < WareHouseIndex.GetLength(1); column++)
-                    {
-                        if (WareHouseIndex[row, column].PalletID.Equals(sökPallId))
-                        {
-                            var pall = WareHouseIndex[row, column];
-                            TimeSpan timeInWarehouse = DateTime.Now - PalletInfo.Arrival;
-                            Console.WriteLine($"Vi plockar ut pallen med PallID :{sökPallId} och den var i lagret i {timeInWarehouse}");
-                            WareHouseIndex[row, column] = null;
-                            return pall;
-                        }
-                    }
-                }
-
+                return null;
             }
+            
+           
+            if (palletToExtract.PalletSize.Equals ("HalvPall")) 
+            {
+                Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
+                decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
+                Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
+                Console.WriteLine($" Då den kom {palletToExtract.Arrival}");
+                SavePalletToPC.SavePalletInfoToFile(palletToExtract);
+                Console.ReadKey();
+            }
+
+            if (palletToExtract.PalletSize.Equals("HelPall"))
+            {
+                Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
+                decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
+                Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
+                Console.WriteLine($" Då den kom {palletToExtract.Arrival}");
+                SavePalletToPC.SavePalletInfoToFile (palletToExtract);
+                Console.ReadKey();
+            }
+
+            
+            
             return null;
 
+        }
+        public static void  MovePallet(PalletInfo palletInfo)
+        {
+            var palletToMove = Extract.ExtractPallet();
+            if (palletToMove == null)
+            {
+                return;
+            }
+
+            if ( palletToMove.PalletSize == "HelPall")
+            {
+                MoveWholePallet.WholePalletMove( palletToMove );
+            }
+            if (palletToMove.PalletSize == "HalvPall")
+            {
+                MoveHalfPallet.HalfPalletMove(palletToMove);
+            }
+            
+                
+            
+
+            
         }
 
     }

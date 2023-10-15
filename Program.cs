@@ -7,7 +7,7 @@ namespace Labb2
         static void Main(string[] args)
         {
 
-            //PalletInfo[,] WareHouseIndex = new PalletInfo[2, 20];
+            AddPalletsToArray.addPalletsToArray();
             PalletInfo palletInfo = new PalletInfo();
             bool closeProgram = false;
             while (!closeProgram)
@@ -15,8 +15,8 @@ namespace Labb2
                 Console.Clear();
                 Console.WriteLine("Välkommen till Lunds Långlager (LLL) ");
                 Console.WriteLine("1. Inläming av pall");
-                Console.WriteLine("2. Utlämninga av pall");
-                Console.WriteLine("3. Sökning av pall");
+                Console.WriteLine("2. Hämta ut din pall");
+                Console.WriteLine("3. Flytta pall");
                 Console.WriteLine("4. Kolla lager status");
                 Console.WriteLine("5. Stäng av programmet");
                 Console.Write("Ditt val :");
@@ -28,16 +28,20 @@ namespace Labb2
                     switch (menuChoice) 
                     {
                             case "1":
-
                             WareHouse.AddIntoWareHouse(palletInfo);
                             break;
                             case "2":
-                            
                             WareHouse.GetFromWareHouse();
-                            
                             break;
-                            case "3": break;
-                            case "4": break;
+                            
+                        case "3":
+                            WareHouse.MovePallet(palletInfo);
+                            break;
+                            
+                        case "4":
+                            PrintOutArray.PrintArray();
+
+                            break;
                             case "5": closeProgram = true; break;
                     }
 

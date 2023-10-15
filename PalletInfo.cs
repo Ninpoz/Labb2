@@ -11,22 +11,22 @@ namespace Labb2
     {
        public string PalletSize {  get; set; }
         public string PalletID { get; set;}
-        public static DateTime Arrival { get; set; }
-        public int PalletIndex { get; set; }
+        public  DateTime Arrival { get; set; }
+        //public int PalletIndex { get; set; }
 
-        public PalletInfo(string size, DateTime arrival, int palletIndex)
+        public PalletInfo(string size, DateTime arrival, string palletID)
         {
             PalletSize = size;
-            PalletID = palletIdGenerator();
+            PalletID = palletID;
             Arrival = arrival;
-            PalletIndex = palletIndex;
+            //PalletIndex = palletIndex;
         }
         public PalletInfo()
         {
             PalletSize = null;
-            PalletID = palletIdGenerator();
-            Arrival = DateTime.MinValue;
-            PalletIndex = 0;
+            PalletID = PalletID;
+            Arrival = DateTime.Now;
+            //PalletIndex = 0;
         }
 
 
