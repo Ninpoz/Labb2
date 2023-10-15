@@ -15,17 +15,17 @@ namespace Labb2
     public class WareHouse
     {
         // skapar en 2D-array för att lagra information om pallar.
-        public static PalletInfo[,] WareHouseIndex = new PalletInfo[2,20];
-        
+        public static PalletInfo[,] WareHouseIndex = new PalletInfo[2, 20];
+
         // Metod för att lägga till pallar i lagret
         public static void AddIntoWareHouse(PalletInfo palletInfo)
         {
             // En loop som hanterar om det är en hel eller halv pall
-            
+
             bool BreakMenuLoop = false;
-            while (!BreakMenuLoop) 
+            while (!BreakMenuLoop)
             {
-                
+
                 Console.Clear();
                 Console.WriteLine(" Du vill lägga till en pall ange om det är en helpall eller halvpall");
                 Console.WriteLine("1. HalvPall");
@@ -38,13 +38,15 @@ namespace Labb2
                 {
                     switch (palletSizeChoice)
                     {
-                        case "1":palletInfo.PalletSize = "HalvPall";
-                            BreakMenuLoop = true;
-                            break ;
-                        case "2": palletInfo.PalletSize = "HelPall";
+                        case "1":
+                            palletInfo.PalletSize = "HalvPall";
                             BreakMenuLoop = true;
                             break;
-                        case "3": 
+                        case "2":
+                            palletInfo.PalletSize = "HelPall";
+                            BreakMenuLoop = true;
+                            break;
+                        case "3":
                             BreakMenuLoop = true;
                             return;
                     }
@@ -57,20 +59,17 @@ namespace Labb2
                 }
             }
             // om det är en halvpall går vi in i detta kodblocket
-           if (palletInfo.PalletSize.Equals("HalvPall"))
+            if (palletInfo.PalletSize.Equals("HalvPall"))
             {
                 HalfPallet.IfHalfPallet(palletInfo);
             }
-           else if (palletInfo.PalletSize.Equals("HelPall"))
+            else if (palletInfo.PalletSize.Equals("HelPall"))
             {
                 WholePallet.IfWholePallet(palletInfo);
             }
 
 
         }
-       
-
-       
 
         public static PalletInfo? GetFromWareHouse()
         {
@@ -80,9 +79,9 @@ namespace Labb2
             {
                 return null;
             }
-            
-           
-            if (palletToExtract.PalletSize.Equals ("HalvPall")) 
+
+
+            if (palletToExtract.PalletSize.Equals("HalvPall"))
             {
                 Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
                 decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
@@ -98,16 +97,16 @@ namespace Labb2
                 decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
                 Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
                 Console.WriteLine($" Då den kom {palletToExtract.Arrival}");
-                SavePalletToPC.SavePalletInfoToFile (palletToExtract);
+                SavePalletToPC.SavePalletInfoToFile(palletToExtract);
                 Console.ReadKey();
             }
 
-            
-            
+
+
             return null;
 
         }
-        public static void  MovePallet(PalletInfo palletInfo)
+        public static void MovePallet(PalletInfo palletInfo)
         {
             var palletToMove = Extract.ExtractPallet();
             if (palletToMove == null)
@@ -115,19 +114,19 @@ namespace Labb2
                 return;
             }
 
-            if ( palletToMove.PalletSize == "HelPall")
+            if (palletToMove.PalletSize == "HelPall")
             {
-                MoveWholePallet.WholePalletMove( palletToMove );
+                MoveWholePallet.WholePalletMove(palletToMove);
             }
             if (palletToMove.PalletSize == "HalvPall")
             {
                 MoveHalfPallet.HalfPalletMove(palletToMove);
             }
-            
-                
-            
 
-            
+
+
+
+
         }
 
     }

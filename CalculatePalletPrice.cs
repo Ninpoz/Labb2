@@ -22,7 +22,7 @@ namespace Labb2
             }
             else
             {
-                return 0; // Åtgärda om det finns andra palltyper
+                return 0; 
             }
         }
     }
