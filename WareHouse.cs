@@ -71,7 +71,7 @@ namespace Labb2
 
         }
 
-        public static PalletInfo? GetFromWareHouse()
+        public static PalletInfo GetFromWareHouse()
         {
             var palletToExtract = Extract.ExtractPallet();
 

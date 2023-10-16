@@ -18,7 +18,8 @@ namespace Labb2
                 Console.WriteLine("2. Hämta ut din pall");
                 Console.WriteLine("3. Flytta pall");
                 Console.WriteLine("4. Kolla lager status");
-                Console.WriteLine("5. Stäng av programmet");
+                Console.WriteLine("5. Sortera Lagret");
+                Console.WriteLine("6. Stäng av programmet");
                 Console.Write("Ditt val :");
 
                 string menuChoice = Console.ReadLine();
@@ -42,7 +43,8 @@ namespace Labb2
                             PrintOutArray.PrintArray();
 
                             break;
-                            case "5": closeProgram = true; break;
+                            case "5": SortAllThePallets.ExtractAllPallets(palletInfo);  break;
+                            case "6": closeProgram = true; break;
                     }
 
                 }
