@@ -20,10 +20,10 @@ namespace Labb2
                     {
                         Console.WriteLine($"Row: {row}, Column: {column}, PalletID: {_palletinfo.PalletID}, PalletSize: {_palletinfo.PalletSize}, Arrival: {_palletinfo.Arrival}");
                     }
-                    //else
-                    //{
-                    //    Console.WriteLine($"Row: {row}, Column: {column}, This Spot is Empty");
-                    //}
+                    else
+                    {
+                        Console.WriteLine($"Row: {row}, Column: {column}, This Spot is Empty");
+                    }
                 }
             }
             Console.ReadLine();

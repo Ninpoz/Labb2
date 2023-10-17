@@ -44,7 +44,7 @@ namespace Labb2
                             palletInfo = new PalletInfo(palletInfo.PalletSize, DateTime.Now, palletInfo.PalletID);
 
                             WareHouse.WareHouseIndex[row + 1, column] = palletInfo;
-                            Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} vid tiden {palletInfo.Arrival} och pallen är en {palletInfo.PalletSize} vi lägger den i lager plats {row + 1}:{column} ");
+                            Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} vid tiden {palletInfo.Arrival} och pallen är en {palletInfo.PalletSize} vi lägger den i lager plats {row + 1}:{column} återgår till huvudmenyn ");
                             Console.ReadLine();
                             return;
 
@@ -54,7 +54,7 @@ namespace Labb2
             }
             if (isWareHouseFull)
             {
-                Console.WriteLine("Lagret är fullt. Kan inte lägga till fler pallar.");
+                Console.WriteLine("Lagret är fullt. Kan inte lägga till fler pallar. Testa att sortera och försök igen");
                 Console.ReadLine();
             }
 

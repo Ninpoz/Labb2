@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Spectre.Console;
+using System.Text.RegularExpressions;
 
 namespace Labb2
 {  //Anton Bergman
@@ -6,7 +7,6 @@ namespace Labb2
     {
         static void Main(string[] args)
         {
-
             AddPalletsToArray.addPalletsToArray();
             PalletInfo palletInfo = new PalletInfo();
             bool closeProgram = false;
@@ -24,37 +24,37 @@ namespace Labb2
 
                 string menuChoice = Console.ReadLine();
 
-                if (Regex.IsMatch(menuChoice, "^[1-5]{1}$"))
-                { 
-                    switch (menuChoice) 
+                if (Regex.IsMatch(menuChoice, "^[1-6]{1}$"))
+                {
+                    switch (menuChoice)
                     {
-                            case "1":
+                        case "1":
                             WareHouse.AddIntoWareHouse(palletInfo);
                             break;
-                            case "2":
+                        case "2":
                             WareHouse.GetFromWareHouse();
                             break;
-                            
+
                         case "3":
                             WareHouse.MovePallet(palletInfo);
                             break;
-                            
+
                         case "4":
                             PrintOutArray.PrintArray();
 
                             break;
-                            case "5": SortAllThePallets.ExtractAllPallets(palletInfo);  break;
-                            case "6": closeProgram = true; break;
+                        case "5": SortAllThePallets.ExtractAllPallets(palletInfo); break;
+                        case "6": closeProgram = true; break;
                     }
 
                 }
-                else 
+                else
                 {
                     Console.WriteLine("Felakting inmatning, Tryck enter och försök igen ");
                     Console.ReadKey();
                 }
             }
 
-        }   
+        }
     }
 }
