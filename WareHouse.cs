@@ -25,8 +25,9 @@ namespace Labb2
             bool BreakMenuLoop = false;
             while (!BreakMenuLoop)
             {
-
-                Console.Clear();
+                
+                
+                PrintOutArray.PrintArray();
                 Console.WriteLine(" Du vill lägga till en pall ange om det är en helpall eller halvpall");
                 Console.WriteLine("1. HalvPall");
                 Console.WriteLine("2. HelPall");
@@ -83,6 +84,7 @@ namespace Labb2
 
             if (palletToExtract.PalletSize.Equals("HalvPall"))
             {
+                PrintOutArray.PrintArray();
                 Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
                 decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
                 Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
@@ -93,6 +95,7 @@ namespace Labb2
 
             if (palletToExtract.PalletSize.Equals("HelPall"))
             {
+                PrintOutArray.PrintArray();
                 Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
                 decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
                 Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
@@ -108,6 +111,7 @@ namespace Labb2
         }
         public static void MovePallet(PalletInfo palletInfo)
         {
+            PrintOutArray.PrintArray();
             var palletToMove = Extract.ExtractPallet();
             if (palletToMove == null)
             {

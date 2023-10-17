@@ -11,7 +11,7 @@ namespace Labb2
         public static void IfWholePallet(PalletInfo palletInfo)
         {
             bool isWareHouseFull = true;
-
+            PrintOutArray.PrintArray();
             for (int row = 0; row < WareHouse.WareHouseIndex.GetLength(0) - 1; row++)
             {
                 isWareHouseFull = true;
@@ -28,6 +28,7 @@ namespace Labb2
 
                         WareHouse.WareHouseIndex[row, column] = palletInfo;
                         WareHouse.WareHouseIndex[row + 1, column] = palletInfo;  //lägger till att en helpall tar upp två platser, t.ex 0:3 / 1:3
+                        PrintOutArray.PrintArray();
                         Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} vid tiden {palletInfo.Arrival} och pallen är en {palletInfo.PalletSize} vi lägger den i lager plats {row}:{column} / {row + 1}:{column} ");
                         Console.ReadLine();
                         return;

@@ -8,8 +8,11 @@ namespace Labb2
 {
     public class HalfPallet
     {
+        
         public static void IfHalfPallet(PalletInfo palletInfo)
         {
+            
+            PrintOutArray.PrintArray();
             bool isWareHouseFull = true;
             for (int row = 0; row < WareHouse.WareHouseIndex.GetLength(0) - 1; row++) // En dubbel forloop  för att iterera genom lagerplatser i 2D-arrayen.
             {
@@ -26,7 +29,9 @@ namespace Labb2
                         WareHouse.WareHouseIndex[row, column] = palletInfo; // lägger till objektet som jag skapade ovanför i min 2d-Array
 
                         Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} som är en {palletInfo.PalletSize} och kom in i lagret {palletInfo.Arrival} och lades till i lager plats {row}:{column} ");
+                      
                         Console.ReadLine();
+
                         return;
                     }
                     else
@@ -44,7 +49,9 @@ namespace Labb2
                             palletInfo = new PalletInfo(palletInfo.PalletSize, DateTime.Now, palletInfo.PalletID);
 
                             WareHouse.WareHouseIndex[row + 1, column] = palletInfo;
+                            PrintOutArray.PrintArray();
                             Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} vid tiden {palletInfo.Arrival} och pallen är en {palletInfo.PalletSize} vi lägger den i lager plats {row + 1}:{column} återgår till huvudmenyn ");
+                           
                             Console.ReadLine();
                             return;
 

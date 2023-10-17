@@ -11,8 +11,8 @@ namespace Labb2
     {
         public static PalletInfo ExtractPallet()
         {
-            Console.Clear();
-            
+            PrintOutArray.PrintArray();
+
 
             bool correctID = false;
             while (!correctID)

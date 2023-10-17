@@ -7,12 +7,14 @@ namespace Labb2
     {
         static void Main(string[] args)
         {
+            
             AddPalletsToArray.addPalletsToArray();
             PalletInfo palletInfo = new PalletInfo();
             bool closeProgram = false;
             while (!closeProgram)
             {
-                Console.Clear();
+                
+                PrintOutArray.PrintArray();
                 Console.WriteLine("Välkommen till Lunds Långlager (LLL) ");
                 Console.WriteLine("1. Inläming av pall");
                 Console.WriteLine("2. Hämta ut din pall");
