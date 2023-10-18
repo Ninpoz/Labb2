@@ -14,7 +14,7 @@ namespace Labb2
 
             Console.Clear();
             var table = new Table();
-            table.AddColumn("[green]Row[/]");
+            table.AddColumn("Row");
             table.AddColumn("Column");
             table.AddColumn("PalletID");
             table.AddColumn("PalletSize");
@@ -27,7 +27,21 @@ namespace Labb2
                     PalletInfo _palletinfo = WareHouse.WareHouseIndex[row, column];
                     if (_palletinfo != null)
                     {
-                        table.AddRow(row.ToString(), column.ToString(), _palletinfo.PalletSize, _palletinfo.PalletID, _palletinfo.Arrival.ToString());
+                        string palletSize = _palletinfo.PalletSize;
+                        string colorTag = "[green]";
+                        if (palletSize.Equals("HalvPall"))
+                        {
+                            colorTag = "[yellow]";
+                        }
+                        //table.AddRow(row.ToString(), column.ToString(),$"{colorTag}{_palletinfo.PalletID}[/]" , $"{colorTag}{_palletinfo.PalletSize}[/]",$"{colorTag}{_palletinfo.Arrival.ToString()}[/]" );
+                        
+                        table.AddRow(
+                       row.ToString(),
+                       column.ToString(),
+                       $"{colorTag}{_palletinfo.PalletID}[/]",
+                       $"{colorTag}{_palletinfo.PalletSize}[/]",
+                       $"{colorTag}{_palletinfo.Arrival}[/]" 
+                   );
                     }
                     else
                     {
@@ -37,25 +51,7 @@ namespace Labb2
             }
 
             AnsiConsole.Render(table);
-            //Console.ReadLine();
 
-            //for (int row = 0; row < WareHouse.WareHouseIndex.GetLength(0); row++)
-            //{
-            //    for (int column = 0; column < WareHouse.WareHouseIndex.GetLength(1); column++)
-            //    {
-            //        PalletInfo _palletinfo = WareHouse.WareHouseIndex[row, column];
-            //        if (_palletinfo != null)
-            //        {
-            //            Console.WriteLine($"Row: {row}, Column: {column}, PalletID: {_palletinfo.PalletID}, PalletSize: {_palletinfo.PalletSize}, Arrival: {_palletinfo.Arrival}");
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine($"Row: {row}, Column: {column}, This Spot is Empty");
-            //        }
-            //    }
-            //}
-            //Console.ReadLine();
-            //return;
         }
     }
 }

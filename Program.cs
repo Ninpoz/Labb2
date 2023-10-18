@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Labb2
@@ -45,7 +46,10 @@ namespace Labb2
                             PrintOutArray.PrintArray();
 
                             break;
-                        case "5": SortAllThePallets.ExtractAllPallets(palletInfo); break;
+                        case "5": SortAllThePallets.ExtractAllPallets();
+                            //    List<PalletInfo> extractedPallets = new List<PalletInfo>();
+                            //SortAllThePallets.deleteListWhenDone(extractedPallets);
+                            break;
                         case "6": closeProgram = true; break;
                     }
 
