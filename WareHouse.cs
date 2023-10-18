@@ -97,7 +97,7 @@ namespace Labb2
                 PrintOutArray.PrintArray();
                 Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
                 decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
-                Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
+                Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}kr");
                 Console.WriteLine($" Då den kom {palletToExtract.Arrival}");
                 SavePalletToPC.SavePalletInfoToFile(palletToExtract);
                 Console.ReadKey();

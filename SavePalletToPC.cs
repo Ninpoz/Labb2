@@ -15,6 +15,7 @@ namespace Labb2
             using (StreamWriter writer = new StreamWriter(filePath,true  ))
             {
                 writer.WriteLine("Uthämtad Pall Information:");
+                writer.WriteLine($"PallID: {pallet.PalletID}");
                 writer.WriteLine($"Uthämtningstid: {DateTime.Now}");
                 writer.WriteLine($"Tid på pallplatsen: {DateTime.Now - pallet.Arrival}");
                 writer.WriteLine($"Palltyp: {pallet.PalletSize}");
