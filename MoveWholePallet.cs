@@ -16,7 +16,7 @@ namespace Labb2
         }
         public static void WholePalletMove(PalletInfo palletInfo)
         {
-            Console.Clear();
+            
             PrintOutArray.PrintArray();
             Console.WriteLine("Vi utgår från grundraden 0");
             Console.WriteLine("Ange vilken kolumn du vill flytta till, t.ex 0:19 :");

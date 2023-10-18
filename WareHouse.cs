@@ -14,6 +14,7 @@ namespace Labb2
     // Klassen WareHouse innehåller metoder och en array för att hantera pallar i lagret.
     public class WareHouse
     {
+
         // skapar en 2D-array för att lagra information om pallar.
         public static PalletInfo[,] WareHouseIndex = new PalletInfo[2, 20];
 
@@ -21,13 +22,11 @@ namespace Labb2
         public static void AddIntoWareHouse(PalletInfo palletInfo)
         {
             // En loop som hanterar om det är en hel eller halv pall
-
+            PrintOutArray.PrintArray();
             bool BreakMenuLoop = false;
             while (!BreakMenuLoop)
             {
-                
-                
-                PrintOutArray.PrintArray();
+               
                 Console.WriteLine(" Du vill lägga till en pall ange om det är en helpall eller halvpall");
                 Console.WriteLine("1. HalvPall");
                 Console.WriteLine("2. HelPall");
@@ -87,7 +86,7 @@ namespace Labb2
                 PrintOutArray.PrintArray();
                 Console.WriteLine("Kostnader för pallar i lagret är :halvpall kostar 39kr per påbörjad timme, helpall kostar 75kr per påbörjad timme");
                 decimal priceForPallet = CalculatePalletPrice.CalculatePrice(palletToExtract);
-                Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}");
+                Console.WriteLine($"så din totala kostnad för din {palletToExtract.PalletSize} blir : {priceForPallet}kr");
                 Console.WriteLine($" Då den kom {palletToExtract.Arrival}");
                 SavePalletToPC.SavePalletInfoToFile(palletToExtract);
                 Console.ReadKey();

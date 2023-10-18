@@ -15,7 +15,7 @@ namespace Labb2
         }
         public static void HalfPalletMove(PalletInfo palletInfo) 
         {
-            Console.Clear();
+            
             PrintOutArray.PrintArray();
             int rowIndex = 0;
             int columIndex = 0;
