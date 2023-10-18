@@ -33,8 +33,7 @@ namespace Labb2
                         {
                             colorTag = "[yellow]";
                         }
-                        //table.AddRow(row.ToString(), column.ToString(),$"{colorTag}{_palletinfo.PalletID}[/]" , $"{colorTag}{_palletinfo.PalletSize}[/]",$"{colorTag}{_palletinfo.Arrival.ToString()}[/]" );
-                        
+                      
                         table.AddRow(
                        row.ToString(),
                        column.ToString(),
