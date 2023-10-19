@@ -19,6 +19,7 @@ namespace Labb2
             table.AddColumn("PalletID");
             table.AddColumn("PalletSize");
             table.AddColumn("Arrival");
+            
 
             for (int row = 0; row < WareHouse.WareHouseIndex.GetLength(0); row++)
             {

@@ -25,7 +25,7 @@ namespace Labb2
                         palletInfo.PalletID = PalletInfo.palletIdGenerator(); //Auto-generar ett unikt pall-id
 
                         palletInfo = new PalletInfo(palletInfo.PalletSize, DateTime.Now, palletInfo.PalletID);// Skapa ett nytt PalletInfo-objekt för varje plats i arrayen.
-
+                        
                         WareHouse.WareHouseIndex[row, column] = palletInfo; // lägger till objektet som jag skapade ovanför i min 2d-Array
 
                         Console.WriteLine($"Vi har lagt till {palletInfo.PalletID} som är en {palletInfo.PalletSize} och kom in i lagret {palletInfo.Arrival} och lades till i lager plats {row}:{column} ");
